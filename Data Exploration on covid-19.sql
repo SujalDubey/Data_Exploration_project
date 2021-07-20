@@ -4,7 +4,7 @@ where continent is not null
 order by 3,4
 
 
-
+--Testing the tables
 select location,date,total_cases,new_cases,total_deaths,population
 from PortfolioProject..CovidDeaths
 order by 1,2
@@ -108,7 +108,7 @@ where dea.continent is not null
 Select *, (RollingPeopleVaccinated/Population)*100
 From PopvsVac
 
---Temp Table
+--Temporary Table
 
 drop table if exists #percentpeoplevaccinated
 create table #percentpeoplevaccinated
