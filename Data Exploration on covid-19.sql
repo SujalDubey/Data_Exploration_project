@@ -4,7 +4,7 @@ where continent is not null
 order by 3,4
 
 
---Testing the tables
+
 select location,date,total_cases,new_cases,total_deaths,population
 from PortfolioProject..CovidDeaths
 order by 1,2
@@ -19,10 +19,10 @@ order by 1,2
 
 -- looking at countries with highest infection rate compared to popluation
 
-select location,population,max(total_cases) as highestinfectioncount, max((total_cases/population)*100) as percentpopulationinfected
+select location,population,date,max(total_cases) as highestinfectioncount, max((total_cases/population)*100) as percentpopulationinfected
 from PortfolioProject..CovidDeaths
 where continent is not null
-group by location, population
+group by location, population,date
 order by percentpopulationinfected desc
 
 -- Below showing countries with highest death count per population
@@ -39,7 +39,7 @@ select continent,max(cast(total_deaths as int)) as Totaldeathcount
 from PortfolioProject..CovidDeaths
 where continent is not null --it will not read the data whose continent value is null
 group by continent
-order by Totaldeathcount,population DESC
+order by Totaldeathcount DESC
 
 --Global Numbers
 -- Below are the world daily total New Cases, total deaths and death percentage. 
@@ -108,7 +108,7 @@ where dea.continent is not null
 Select *, (RollingPeopleVaccinated/Population)*100
 From PopvsVac
 
---Temporary Table
+--Temp Table
 
 drop table if exists #percentpeoplevaccinated
 create table #percentpeoplevaccinated
@@ -146,4 +146,4 @@ Join PortfolioProject..CovidVaccinations vac
 where dea.continent is not null 
 
 select *
-from percentpopulationvaccinated
+from PercentPopulationVaccinated
